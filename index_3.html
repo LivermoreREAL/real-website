@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REAL | Real Estate Alliance of Livermore</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --purple: #643085;
+    --green: #94C247;
+    --black: #111111;
+    --true-black: #000000;
+    --white: #ffffff;
+    --off-white: #f7f6f4;
+    --cream: #faf9f7;
+    --light-gray: #e5e3df;
+    --mid-gray: #6b6b6b;
+    --dark-gray: #2a2a2a;
+    --purple-light: #f3edf7;
+    --purple-faint: #f9f5fc;
+    --green-light: #f2f8e6;
+    --green-faint: #f8fced;
+    --purple-dark: #4a1f66;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 20px rgba(0,0,0,0.07);
+    --shadow-lg: 0 8px 40px rgba(0,0,0,0.1);
+    --radius: 10px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--black);
+    background: var(--white);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: var(--purple); }
+
+  /* ═══════════ NAV ═══════════ */
+  .top-bar {
+    background: var(--true-black);
+    padding: 8px 24px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    font-size: 0.78rem;
+  }
+  .top-bar a {
+    color: rgba(255,255,255,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .top-bar a:hover { color: var(--green); }
+  .top-bar .social-icons { display: flex; gap: 12px; }
+  .top-bar .social-icons a { font-size: 0.9rem; }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--light-gray);
+    transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: var(--shadow-md); }
+
+  .nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    height: 72px;
+  }
+
+  .nav-logo { height: 50px; width: auto; }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--dark-gray);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: color 0.25s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--purple);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--purple); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--purple);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+    transition: background 0.25s;
+  }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--purple-dark) !important; color: var(--white) !important; }
+
+  .mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+  }
+  .mobile-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--dark-gray);
+    margin: 5px 0;
+    transition: 0.3s;
+  }
+
+  /* ═══════════ HERO ═══════════ */
+  .hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    /* Livermore vineyard-inspired gradient as placeholder for a real photo */
+    background:
+      linear-gradient(135deg, rgba(30,15,40,0.88) 0%, rgba(20,20,20,0.75) 50%, rgba(40,60,20,0.65) 100%);
+    z-index: 1;
+  }
+
+  .hero-bg-pattern {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(circle at 15% 85%, rgba(100,48,133,0.4) 0%, transparent 50%),
+      radial-gradient(circle at 85% 15%, rgba(148,194,71,0.25) 0%, transparent 50%),
+      radial-gradient(circle at 50% 50%, rgba(60,30,80,0.3) 0%, transparent 70%);
+    /* When a real photo is added, replace the gradient above with:
+       background: url('hero-image.jpg') center/cover no-repeat;
+       and keep the .hero-bg overlay for legibility */
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 40px 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-text h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    color: var(--white);
+    font-weight: 600;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .hero-text h1 span {
+    color: var(--green);
+  }
+
+  .hero-text .subtitle {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 30px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.92rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    letter-spacing: 0.01em;
+  }
+  .btn-primary {
+    background: var(--green);
+    color: var(--true-black);
+  }
+  .btn-primary:hover { background: #a8d45a; transform: translateY(-2px); }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.35);
+  }
+  .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.08); }
+
+  .hero-card {
+    background: rgba(255,255,255,0.07);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 40px 36px;
+    color: var(--white);
+  }
+  .hero-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: var(--green);
+  }
+  .hero-card-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .hero-card-item .icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .hero-card-item .detail h4 {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+  .hero-card-item .detail p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.5;
+  }
+
+  /* ═══════════ QUICK NAV BAR ═══════════ */
+  .quick-nav {
+    background: var(--white);
+    border-bottom: 1px solid var(--light-gray);
+    padding: 0 24px;
+  }
+  .quick-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 0;
+  }
+  .quick-nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 32px;
+    text-decoration: none;
+    color: var(--dark-gray);
+    font-weight: 600;
+    font-size: 0.88rem;
+    border-bottom: 3px solid transparent;
+    transition: all 0.25s;
+  }
+  .quick-nav a:hover {
+    color: var(--purple);
+    border-bottom-color: var(--purple);
+    background: var(--purple-faint);
+  }
+  .quick-nav a .qn-icon { font-size: 1.2rem; }
+
+  /* ═══════════ STATS BAR ═══════════ */
+  .stats-bar {
+    background: var(--purple);
+    padding: 0 24px;
+  }
+  .stats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+  }
+  .stat-item {
+    padding: 36px 16px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--green);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.7);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+  }
+
+  /* ═══════════ SECTION COMMON ═══════════ */
+  section { padding: 80px 24px; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.3rem);
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--black);
+    margin-bottom: 14px;
+  }
+  .section-subtitle {
+    font-size: 1rem;
+    color: var(--mid-gray);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ═══════════ ABOUT / MISSION ═══════════ */
+  #about { background: var(--cream); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  .about-text h2 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 20px;
+  }
+  .about-text h2 span { color: var(--purple); }
+  .about-text p {
+    color: var(--mid-gray);
+    line-height: 1.75;
+    margin-bottom: 16px;
+    font-size: 0.95rem;
+  }
+  .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .about-feat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--dark-gray);
+  }
+  .about-feat .check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: var(--green-light);
+    color: var(--green);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .about-visual {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 40px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--light-gray);
+    text-align: center;
+  }
+  .about-visual img {
+    width: 240px;
+    max-width: 100%;
+    margin-bottom: 24px;
+  }
+  .about-visual .tagline {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--purple);
+    line-height: 1.4;
+  }
+
+  /* ═══════════ SPONSORSHIP ═══════════ */
+  #sponsorship { background: var(--white); }
+
+  .sponsor-tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .tier-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 36px 28px;
+    border: 1px solid var(--light-gray);
+    transition: all 0.3s;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .tier-card:hover {
+    border-color: var(--purple);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+  .tier-card.featured {
+    border-color: var(--purple);
+    box-shadow: 0 4px 30px rgba(100,48,133,0.12);
+    background: linear-gradient(180deg, var(--purple-faint) 0%, var(--white) 50%);
+  }
+  .tier-badge {
+    position: absolute;
+    top: -13px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--purple);
+    color: var(--white);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 18px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .tier-header { text-align: center; margin-bottom: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--light-gray); }
+  .tier-name {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .tier-price {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--purple);
+    line-height: 1;
+  }
+  .tier-price span { font-size: 0.85rem; font-weight: 400; color: var(--mid-gray); }
+
+  .tier-features {
+    list-style: none;
+    flex: 1;
+  }
+  .tier-features li {
+    padding: 8px 0;
+    font-size: 0.88rem;
+    color: var(--mid-gray);
+    line-height: 1.55;
+    position: relative;
+    padding-left: 26px;
+  }
+  .tier-features li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--green);
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+
+  .sponsor-footer {
+    text-align: center;
+    margin-top: 40px;
+    padding: 28px;
+    background: var(--off-white);
+    border-radius: var(--radius);
+    border: 1px solid var(--light-gray);
+  }
+  .sponsor-footer p {
+    font-size: 0.95rem;
+    color: var(--mid-gray);
+    margin-bottom: 12px;
+  }
+  .sponsor-footer a {
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 2px solid rgba(100,48,133,0.25);
+    transition: border-color 0.25s;
+  }
+  .sponsor-footer a:hover { border-color: var(--purple); }
+
+  /* ═══════════ BROKER TOUR ═══════════ */
+  #tour { background: var(--cream); }
+
+  .tour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .tour-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 32px 28px;
+    border: 1px solid var(--light-gray);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.3s, transform 0.3s;
+  }
+  .tour-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .tour-card .card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: var(--purple-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+  .tour-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .tour-card p {
+    color: var(--mid-gray);
+    font-size: 0.9rem;
+    line-height: 1.65;
+  }
+
+  .tour-alert {
+    margin-top: 32px;
+    background: var(--green-faint);
+    border: 1px solid rgba(148,194,71,0.3);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .tour-alert .alert-icon {
+    font-size: 1.3rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .tour-alert p {
+    font-size: 0.88rem;
+    color: var(--mid-gray);
+    line-height: 1.65;
+  }
+
+  /* ═══════════ AGENDA ═══════════ */
+  #agenda { background: var(--white); }
+
+  .agenda-timeline {
+    max-width: 700px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .agenda-timeline::before {
+    content: '';
+    position: absolute;
+    left: 23px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: var(--light-gray);
+  }
+
+  .agenda-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 24px;
+    padding: 14px 0;
+    position: relative;
+  }
+
+  .agenda-dot {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--purple);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--purple);
+    z-index: 1;
+  }
+  .agenda-item:first-child .agenda-dot,
+  .agenda-item:last-child .agenda-dot {
+    background: var(--purple);
+    color: var(--white);
+    border-color: var(--purple);
+  }
+
+  .agenda-content {
+    padding-top: 10px;
+  }
+  .agenda-content .time {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--purple);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+  }
+  .agenda-content p {
+    color: var(--mid-gray);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+
+  /* ═══════════ POLICIES ═══════════ */
+  #policies { background: var(--cream); }
+
+  .policy-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .policy-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 32px 28px;
+    border: 1px solid var(--light-gray);
+  }
+  .policy-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .policy-card p {
+    color: var(--mid-gray);
+    font-size: 0.88rem;
+    line-height: 1.65;
+  }
+
+  /* ═══════════ CTA BAND ═══════════ */
+  .cta-band {
+    background: var(--true-black);
+    padding: 72px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-band::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 50%, rgba(100,48,133,0.3) 0%, transparent 60%),
+      radial-gradient(ellipse at 70% 50%, rgba(148,194,71,0.15) 0%, transparent 60%);
+  }
+  .cta-band-inner { position: relative; z-index: 1; }
+  .cta-band h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 14px;
+  }
+  .cta-band p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    margin-bottom: 28px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ═══════════ CONNECT ═══════════ */
+  #connect { background: var(--white); text-align: center; }
+
+  .social-links {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    background: var(--off-white);
+    border: 1px solid var(--light-gray);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--black);
+    font-weight: 500;
+    font-size: 0.92rem;
+    transition: border-color 0.25s, box-shadow 0.25s;
+  }
+  .social-link:hover {
+    border-color: var(--purple);
+    box-shadow: 0 4px 16px rgba(100,48,133,0.08);
+  }
+  .social-link svg { width: 20px; height: 20px; }
+
+  .email-contact {
+    font-size: 0.95rem;
+    color: var(--mid-gray);
+  }
+  .email-contact a {
+    color: var(--purple);
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(100,48,133,0.3);
+  }
+
+  /* ═══════════ FOOTER ═══════════ */
+  footer {
+    background: var(--true-black);
+    color: rgba(255,255,255,0.55);
+    padding: 60px 24px 32px;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .footer-brand img {
+    height: 48px;
+    margin-bottom: 16px;
+    opacity: 0.85;
+  }
+  .footer-brand p {
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.45);
+    max-width: 280px;
+  }
+
+  .footer-col h4 {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 16px;
+  }
+  .footer-col ul {
+    list-style: none;
+  }
+  .footer-col li { margin-bottom: 8px; }
+  .footer-col a {
+    color: rgba(255,255,255,0.45);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--green); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ═══════════ RESPONSIVE ═══════════ */
+  @media (max-width: 1024px) {
+    .hero-content { grid-template-columns: 1fr; gap: 40px; }
+    .about-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  @media (max-width: 768px) {
+    .top-bar { display: none; }
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      padding: 20px 28px;
+      gap: 14px;
+      border-bottom: 1px solid var(--light-gray);
+      box-shadow: var(--shadow-md);
+    }
+    .mobile-toggle { display: block; }
+
+    .hero { min-height: auto; }
+    .hero-content { padding: 80px 24px 60px; }
+
+    .quick-nav-inner { flex-wrap: wrap; }
+    .quick-nav a { padding: 14px 16px; font-size: 0.8rem; }
+
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .stat-item:nth-child(2) { border-right: none; }
+    .stat-item { padding: 24px 12px; }
+    .stat-number { font-size: 2rem; }
+
+    section { padding: 56px 20px; }
+
+    .sponsor-tiers { grid-template-columns: 1fr; }
+    .tour-grid { grid-template-columns: 1fr; }
+    .policy-cards { grid-template-columns: 1fr; }
+    .about-features { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="social-icons">
+    <a href="https://www.instagram.com/realmarketingmeeting/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.facebook.com/LivermoreREAL/" target="_blank" rel="noopener">Facebook</a>
+  </div>
+  <a href="mailto:sponsorship.real@gmail.com">sponsorship.real@gmail.com</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <img src="Main_logo.png" alt="REAL Logo" class="nav-logo">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#sponsorship">Sponsorship</a></li>
+      <li><a href="#tour">Broker Tour</a></li>
+      <li><a href="#agenda">Agenda</a></li>
+      <li><a href="#connect">Connect</a></li>
+      <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScv7KvpUFHv1ANzzc-j7TO-NYj7I8hqpp4fQ4ccgwLVjXI7cw/viewform" target="_blank" rel="noopener" class="nav-cta">Submit a Question</a></li>
+    </ul>
+    <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <h1>Where Livermore<br>Real Estate<br>Comes <span>Together</span></h1>
+      <p class="subtitle">The Real Estate Alliance of Livermore is a weekly networking meeting for Realtors, affiliates, and professionals in the Tri-Valley real estate community. Quality speakers, broker tours, and real relationships.</p>
+      <div class="hero-buttons">
+        <a href="#about" class="btn btn-primary">Learn More</a>
+        <a href="#sponsorship" class="btn btn-outline">Become a Sponsor</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <h3>Next Meeting</h3>
+      <div class="hero-card-item">
+        <div class="icon">📍</div>
+        <div class="detail">
+          <h4>First Street Ale House</h4>
+          <p>2106 First St, Livermore, CA 94550</p>
+        </div>
+      </div>
+      <div class="hero-card-item">
+        <div class="icon">🕘</div>
+        <div class="detail">
+          <h4>Every Thursday at 9:00 AM</h4>
+          <p>Doors open at 8:45 AM for networking</p>
+        </div>
+      </div>
+      <div class="hero-card-item">
+        <div class="icon">🎟️</div>
+        <div class="detail">
+          <h4>$5 Admission</h4>
+          <p>Includes breakfast burrito or pastries, coffee or tea. Cash only.</p>
+        </div>
+      </div>
+      <div class="hero-card-item" style="margin-bottom:0;">
+        <div class="icon">🏡</div>
+        <div class="detail">
+          <h4>Broker Tour at 10:30 AM</h4>
+          <p>Weekly tour runs 10:30 AM to 1:00 PM</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK NAV -->
+<div class="quick-nav">
+  <div class="quick-nav-inner">
+    <a href="#about"><span class="qn-icon">🤝</span> About REAL</a>
+    <a href="#sponsorship"><span class="qn-icon">⭐</span> Sponsorship</a>
+    <a href="#tour"><span class="qn-icon">🏡</span> Broker Tour</a>
+    <a href="#agenda"><span class="qn-icon">📋</span> Agenda</a>
+    <a href="#connect"><span class="qn-icon">💬</span> Connect</a>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">20+</div>
+      <div class="stat-label">Years Running</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">52</div>
+      <div class="stat-label">Meetings per Year</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">60+</div>
+      <div class="stat-label">Weekly Attendees</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">Tri-Valley</div>
+      <div class="stat-label">Community</div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About REAL</div>
+        <h2>A <span>Quality Networking Experience</span> for the Livermore Real Estate Community</h2>
+        <p>The Real Estate Alliance of Livermore creates a space where Realtors, affiliates, and professionals can connect, learn, and build real relationships. We feature current listings on our weekly Broker Tour, host quality guest speakers, and announce community events.</p>
+        <p>Most importantly, we have fun, network, and build the relationships that drive business in the Tri-Valley.</p>
+        <div class="about-features">
+          <div class="about-feat"><span class="check">✓</span> Weekly guest speakers</div>
+          <div class="about-feat"><span class="check">✓</span> Broker tour listings</div>
+          <div class="about-feat"><span class="check">✓</span> Super Tour cash prizes</div>
+          <div class="about-feat"><span class="check">✓</span> Community announcements</div>
+          <div class="about-feat"><span class="check">✓</span> Panel discussions</div>
+          <div class="about-feat"><span class="check">✓</span> Networking before &amp; after</div>
+        </div>
+      </div>
+      <div class="about-visual">
+        <img src="Main_logo.png" alt="REAL Logo">
+        <p class="tagline">Real connections. Real community.<br>Real estate, done together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPONSORSHIP -->
+<section id="sponsorship">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Get Involved</div>
+      <h2 class="section-title">Sponsorship Opportunities</h2>
+      <p class="section-subtitle">Support REAL and put your brand in front of local real estate professionals every Thursday.</p>
+    </div>
+
+    <div class="sponsor-tiers">
+      <div class="tier-card">
+        <div class="tier-header">
+          <div class="tier-name">Discount Punch Card</div>
+          <div class="tier-price">$50</div>
+        </div>
+        <ul class="tier-features">
+          <li>11 meeting entries</li>
+          <li>Available at the door or online via Bay East Portal</li>
+          <li>Great for occasional attendees</li>
+        </ul>
+      </div>
+
+      <div class="tier-card featured">
+        <div class="tier-badge">Best Value</div>
+        <div class="tier-header">
+          <div class="tier-name">Annual Sponsorship</div>
+          <div class="tier-price">$275 <span>/ year</span></div>
+        </div>
+        <ul class="tier-features">
+          <li>Free admittance to all REAL meetings</li>
+          <li>Rotating 2-minute presentations throughout the year</li>
+          <li>Formal recognition at the 1st meeting of each month</li>
+          <li>Flyer distribution allowed year-round</li>
+        </ul>
+      </div>
+
+      <div class="tier-card">
+        <div class="tier-header">
+          <div class="tier-name">Monthly Sponsorship</div>
+          <div class="tier-price">$225 <span>/ month</span></div>
+        </div>
+        <ul class="tier-features">
+          <li>3-minute presentation, twice per sponsored month</li>
+          <li>Tour sheet and TV monitor representation</li>
+          <li>Marketing materials on tables during your month</li>
+          <li>Free admittance during your sponsored month</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="sponsor-footer">
+      <p>Interested in becoming a Room, Food, Coffee, or Annual Sponsor?</p>
+      <a href="mailto:sponsorship.real@gmail.com">Contact us at sponsorship.real@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- BROKER TOUR -->
+<section id="tour">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Broker Tour</div>
+      <h2 class="section-title">Livermore Weekly Broker Tour</h2>
+      <p class="section-subtitle">Every Thursday from 10:30 AM to 1:00 PM. Get out, support your fellow Realtors, and see what's on the market.</p>
+    </div>
+
+    <div class="tour-grid">
+      <div class="tour-card">
+        <div class="card-icon">📋</div>
+        <h3>Get on the Tour Sheet</h3>
+        <p>Add "Tour" to your listing in Paragon no later than 2:00 PM the day before. This won't affect MLS Subscribers' ability to search tour info. <a href="http://bayeast.org/wp-content/uploads/REAL-Toursheet.pdf" target="_blank" rel="noopener">View the tour sheet.</a></p>
+      </div>
+
+      <div class="tour-card">
+        <div class="card-icon">🏆</div>
+        <h3>Super Tour</h3>
+        <p>$50 per property. Email Alyssa Gonzalez, <a href="mailto:alyssa@hbrteam.com">alyssa@hbrteam.com</a>, by 2:00 PM Wednesday. Go on tour, have fun, win up to $250 in cash.</p>
+        <p style="margin-top: 12px;">Have a property coming soon? Contact Alyssa for information and to get signed up ahead of time.</p>
+      </div>
+
+      <div class="tour-card">
+        <div class="card-icon">📖</div>
+        <h3>C.A.R. Guidelines</h3>
+        <p>Follow all C.A.R. Open House and Broker Tour Guidelines and State and County property showing regulations. C.A.R. has a detailed Quick Guide available (sign-in required).</p>
+      </div>
+    </div>
+
+    <div class="tour-alert">
+      <div class="alert-icon">⚠️</div>
+      <p><strong>Important:</strong> No alcohol may be served during Broker Tour. Broker Tour is a Bay East sanctioned event. Receipts are available upon request. Please pay with cash only.</p>
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">What to Expect</div>
+      <h2 class="section-title">Thursday Meeting Agenda</h2>
+      <p class="section-subtitle">A full hour of value. We aim to wrap by 9:59 AM.</p>
+    </div>
+
+    <div class="agenda-timeline">
+      <div class="agenda-item">
+        <div class="agenda-dot">1</div>
+        <div class="agenda-content">
+          <div class="time">9:00 AM</div>
+          <p>Call to Order and Pledge of Allegiance</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-dot">2</div>
+        <div class="agenda-content">
+          <p>First-timers introductions</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-dot">3</div>
+        <div class="agenda-content">
+          <p>Annual Sponsor presentations (2 min each, 3 per meeting, rotating). Elite Sponsor on the 2nd week.</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-dot">4</div>
+        <div class="agenda-content">
+          <p>Room &amp; Speaker Sponsors (3 min, 1st &amp; 3rd Thursdays) or Food &amp; Special Sponsors (3 min, 2nd &amp; 4th Thursdays)</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-dot">5</div>
+        <div class="agenda-content">
+          <p>Super Tour drawing (win up to $250), listing presentations, out-of-area, price reductions, buyer wants, coming soon (30 sec each)</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-dot">6</div>
+        <div class="agenda-content">
+          <p>Guest speaker or panel discussion</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-dot">7</div>
+        <div class="agenda-content">
+          <p>Community announcements (brief, real estate topics only)</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-dot">8</div>
+        <div class="agenda-content">
+          <p>Giveaways</p>
+        </div>
+      </div>
+      <div class="agenda-item">
+        <div class="agenda-dot">9</div>
+        <div class="agenda-content">
+          <div class="time">9:59 AM</div>
+          <p>Meeting adjourns</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POLICIES -->
+<section id="policies">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Good to Know</div>
+      <h2 class="section-title">Meeting Policies</h2>
+    </div>
+
+    <div class="policy-cards">
+      <div class="policy-card">
+        <h3>📢 Networking Etiquette</h3>
+        <p>Networking is encouraged, but please refrain from openly soliciting products and services during the meeting. The room is open for networking at 8:30 AM and after the meeting until 10:00 AM.</p>
+      </div>
+      <div class="policy-card">
+        <h3>📄 Flyer Policy</h3>
+        <p>Only the current week's speaker or a paid sponsor presenting that day may place flyers or materials on tables. Others are welcome to share during Community Announcements and distribute outside after the meeting.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-band-inner">
+    <h2>Have a Question for Our Panelists?</h2>
+    <p>Submit your questions ahead of time and help shape the discussion at our next meeting.</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScv7KvpUFHv1ANzzc-j7TO-NYj7I8hqpp4fQ4ccgwLVjXI7cw/viewform" target="_blank" rel="noopener" class="btn btn-primary">Submit a Question</a>
+  </div>
+</div>
+
+<!-- CONNECT -->
+<section id="connect">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-label">Stay Connected</div>
+      <h2 class="section-title">Follow REAL</h2>
+      <p class="section-subtitle">Weekly updates, speaker announcements, and community news.</p>
+    </div>
+
+    <div class="social-links">
+      <a href="https://www.instagram.com/realmarketingmeeting/" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="20" height="20"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"/></svg>
+        Instagram
+      </a>
+      <a href="https://www.facebook.com/LivermoreREAL/" target="_blank" rel="noopener" class="social-link">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        Facebook
+      </a>
+    </div>
+
+    <p class="email-contact" style="margin-top: 24px;">General inquiries: <a href="mailto:sponsorship.real@gmail.com">sponsorship.real@gmail.com</a></p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="Main_logo.png" alt="REAL Logo">
+        <p>The Real Estate Alliance of Livermore creates a quality networking experience for Realtors, affiliates, and professionals in the Livermore and Tri-Valley real estate communities.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Meeting</h4>
+        <ul>
+          <li><a href="#about">About REAL</a></li>
+          <li><a href="#agenda">Meeting Agenda</a></li>
+          <li><a href="#policies">Policies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Get Involved</h4>
+        <ul>
+          <li><a href="#sponsorship">Sponsorship</a></li>
+          <li><a href="#tour">Broker Tour</a></li>
+          <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScv7KvpUFHv1ANzzc-j7TO-NYj7I8hqpp4fQ4ccgwLVjXI7cw/viewform" target="_blank" rel="noopener">Submit a Question</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="mailto:sponsorship.real@gmail.com">sponsorship.real@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/realmarketingmeeting/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.facebook.com/LivermoreREAL/" target="_blank" rel="noopener">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 Real Estate Alliance of Livermore (REAL). All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  const toggle = document.getElementById('mobileToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(link =>
+    link.addEventListener('click', () => navLinks.classList.remove('open'))
+  );
+</script>
+
+</body>
+</html>
