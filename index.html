@@ -541,6 +541,19 @@
     transition: border-color 0.25s;
   }
   .sponsor-footer a:hover { border-color: var(--purple); }
+  .sponsor-footer a.sponsor-cta {
+    display: inline-block;
+    background: var(--purple);
+    color: var(--white);
+    padding: 14px 30px;
+    border-radius: 6px;
+    border-bottom: none;
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    transition: background 0.25s, transform 0.25s;
+  }
+  .sponsor-footer a.sponsor-cta:hover { background: var(--purple-dark); transform: translateY(-2px); }
+  .sponsor-footer .sponsor-contact { margin-bottom: 0; }
 
   /* ═══════════ BROKER TOUR ═══════════ */
   #tour { background: var(--cream); }
@@ -1069,8 +1082,9 @@
     </div>
 
     <div class="sponsor-footer">
-      <p>Interested in becoming a Room, Food, Coffee, or Annual Sponsor?</p>
-      <a href="mailto:sponsorship.real@gmail.com">Contact us at sponsorship.real@gmail.com</a>
+      <p><strong>Ready to sponsor in 2027?</strong> Request your spot online. Elite, annual and monthly sponsorships are first come, first served.</p>
+      <a href="https://real-sponsorships.vercel.app" class="sponsor-cta">Request a 2027 sponsorship</a>
+      <p class="sponsor-contact">Interested in becoming a Room, Food, Coffee, or Annual Sponsor? <a href="mailto:sponsorship.real@gmail.com">Contact us at sponsorship.real@gmail.com</a></p>
     </div>
   </div>
 </section>
@@ -1258,6 +1272,7 @@
         <h4>Get Involved</h4>
         <ul>
           <li><a href="#sponsorship">Sponsorship</a></li>
+          <li><a href="https://real-sponsorships.vercel.app">Request a 2027 sponsorship</a></li>
           <li><a href="#tour">Broker Tour</a></li>
           <li><a href="https://docs.google.com/forms/d/e/1FAIpQLScv7KvpUFHv1ANzzc-j7TO-NYj7I8hqpp4fQ4ccgwLVjXI7cw/viewform" target="_blank" rel="noopener">Submit a Question</a></li>
         </ul>
